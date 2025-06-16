@@ -5,20 +5,6 @@ Created on Tue Jun 10 19:57:18 2025
 @author: omerf
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jun  7 03:34:22 2025
-
-@author: omerf
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jun  4 19:16:08 2025
-
-@author: omerf
-"""
-
 import numpy as np
 import pandas as pd
 import yfinance as yf
@@ -40,11 +26,9 @@ warnings.filterwarnings('ignore')
 os.environ['PYTHONWARNINGS'] = 'ignore'
 
 class TechnicalIndicators:
-    """Class to calculate technical indicators without talib"""
     
     @staticmethod
     def calculate_rsi(prices, period=14):
-        """Calculate RSI without talib"""
         delta = pd.Series(prices).diff()
         gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
         loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
@@ -54,17 +38,14 @@ class TechnicalIndicators:
     
     @staticmethod
     def calculate_ema(prices, period=11):
-        """Calculate Exponential Moving Average without talib"""
         return pd.Series(prices).ewm(span=period, adjust=False).mean().values
     
     @staticmethod
     def calculate_sma(prices, period):
-        """Calculate Simple Moving Average"""
         return pd.Series(prices).rolling(window=period).mean().values
     
     @staticmethod
     def calculate_wavetrend(high, low, close, channel_length=10, average_length=21):
-        """Calculate WaveTrend Oscillator without talib"""
         # Typical Price
         hlc3 = (high + low + close) / 3
         hlc3_series = pd.Series(hlc3)
@@ -87,7 +68,6 @@ class TechnicalIndicators:
     
     @staticmethod
     def calculate_wavetrend(high, low, close, channel_length=10, average_length=21):
-        """WaveTrend hesaplama (aşırı bölgeler dahil)"""
         hlc3 = (high + low + close) / 3
         esa = pd.Series(hlc3).ewm(span=channel_length, adjust=False).mean()
         d = pd.Series(np.abs(hlc3 - esa)).ewm(span=channel_length, adjust=False).mean()
@@ -101,16 +81,13 @@ class TechnicalIndicators:
         
         return wt1.values, wt2.values, wt_overbought, wt_oversold
 
-class LSTMModel:
-    """LSTM Model for price prediction"""
-    
+class LSTMModel:    
     def __init__(self, lookback_period=60):
         self.lookback_period = lookback_period
         self.scaler = MinMaxScaler(feature_range=(0, 1))
         self.model = None
         
     def prepare_data(self, data):
-        """Prepare data for LSTM training"""
         # Scale the data
         scaled_data = self.scaler.fit_transform(data.reshape(-1, 1))
         
@@ -122,7 +99,6 @@ class LSTMModel:
         return np.array(X), np.array(y)
     
     def build_model(self, input_shape):
-        """Build LSTM model"""
         model = Sequential([
             LSTM(50, return_sequences=True, input_shape=input_shape),
             Dropout(0.2),
@@ -137,7 +113,6 @@ class LSTMModel:
         return model
     
     def train(self, data, epochs=50, batch_size=32):
-        """Train the LSTM model"""
         X, y = self.prepare_data(data)
         
         # Split data
@@ -163,7 +138,6 @@ class LSTMModel:
         return history
     
     def predict(self, data):
-        """Make predictions"""
         if self.model is None:
             raise ValueError("Model not trained yet!")
             
@@ -182,9 +156,7 @@ class LSTMModel:
         # Inverse transform
         return self.scaler.inverse_transform(prediction)[0][0]
 
-class Strategy3TradingBot:
-    """Strategy 3 Trading Bot - Optimized for 1H timeframe"""
-    
+class Strategy3TradingBot:    
     def __init__(self, symbol, period="1h", lookback_days=100):
         self.symbol = symbol
         self.period = period
@@ -198,13 +170,12 @@ class Strategy3TradingBot:
         self.wavetrend_buy_signal_active = False  # Track if WT buy signal is active
         
     def fetch_data(self):
-        """Fetch data from Binance API"""
         from binance.client import Client
         import pandas as pd
 
         # Binance API anahtarları
-        API_KEY = 'cfDC92B191b9B3Ca3D842Ae0e01108CBKI6BqEW6xr4NrPus3hoZ9Ze9YrmWwPFV'
-        API_SECRET = 'f9AbA6a8AD6bC2a97294a212244dda04ETfl0kc4BSUGOtL7m7rNELpt3Jh25SiP'
+        API_KEY = '****************************************************************'
+        API_SECRET = '****************************************************************'
         client = Client(API_KEY, API_SECRET)
 
         try:
@@ -233,7 +204,6 @@ class Strategy3TradingBot:
             return False
     
     def create_sample_data(self):
-        """Create sample data for testing when API fails"""
         print("📊 Örnek veri oluşturuluyor...")
         
         # Generate sample price data
@@ -266,7 +236,6 @@ class Strategy3TradingBot:
         return True
     
     def calculate_indicators(self):
-        """Calculate all technical indicators according to Strategy 3"""
         if self.data is None or self.data.empty:
             raise ValueError("No data available. Fetch data first.")
         
@@ -277,7 +246,7 @@ class Strategy3TradingBot:
         # EMA: Period = 11 (optimal for RSI 14)
         self.data['EMA'] = self.indicators.calculate_ema(self.data['Close'].values, period=11)
         
-        # WaveTrend'i hesapla (aşırı bölgeleri de döndür)
+        # WaveTrend hesaplanıyor (aşırı bölgeleri de döndürür)
         wt1, wt2, wt_overbought, wt_oversold = self.indicators.calculate_wavetrend(
         self.data['High'].values,
         self.data['Low'].values,
@@ -289,7 +258,7 @@ class Strategy3TradingBot:
         self.data['WT_Overbought'] = wt_overbought  # +60
         self.data['WT_Oversold'] = wt_oversold      # -60
    
-        # Alım/Satım sinyallerini aşırı bölgelerle güncelle
+        # Alım/Satım sinyallerini aşırı bölgelerle güncelleniyor
         self.data['WT_Buy_Signal'] = False
         self.data['WT_Sell_Signal'] = False
         self.data['WT_Zero_Cross_Up'] = False  # Sıfır çizgisini yukarı geçiş
@@ -419,7 +388,6 @@ class Strategy3TradingBot:
             return 0  # Nötr (Bekle)
     
     def execute_trade(self, signal, price, timestamp):
-        """Execute trade based on signal"""
         if signal == 1 and self.position == 0:  # Buy
             self.position = 1
             self.entry_price = price
@@ -447,7 +415,6 @@ class Strategy3TradingBot:
             print(f"🔴 SELL at ${price:.2f} on {timestamp}, Profit: ${profit:.2f} ({profit_pct:.2f}%)")
     
     def backtest(self):
-        """Run backtest on historical data using Strategy 3"""
         if self.data is None:
             raise ValueError("No data available. Fetch data first.")
         
@@ -469,7 +436,6 @@ class Strategy3TradingBot:
         return self.analyze_performance()
     
     def analyze_performance(self):
-        """Analyze trading performance"""
         if not self.trade_history:
             return {"error": "No trades executed"}
         
@@ -504,7 +470,6 @@ class Strategy3TradingBot:
         return performance
     
     def get_current_signal_strategy3(self):
-        """Get current trading signal based on Strategy 3"""
         if self.data is None or len(self.data) < 60:
             return None
         
@@ -546,7 +511,6 @@ class Strategy3TradingBot:
         }
     
     def get_strategy3_signal_description(self, signal, rsi_oversold, wt_recent, price_above_ema, rsi_value=None):
-        """Get human-readable Strategy 3 signal description with enhanced emojis and explanations"""
         if signal == 2:  # Güçlü Al - all 3 conditions met
             return "🟢 GÜÇLÜ AL - Tüm Strateji 3 koşulları sağlandı: 📉 RSI aşırı satım (≤35), 🌊 WaveTrend alım sinyali aktif ✅, 📈 Fiyat EMA üzerinde çapraz yaptı ✅"
         elif signal == 1:  # Al (Tepkimli) - WT + EMA cross, RSI ignored
@@ -578,7 +542,6 @@ class Strategy3TradingBot:
             return f"🔵 NÖTR (BEKLE) - Strateji 3 koşul durumu: {' | '.join(conditions)}"
     
     def get_turkish_recommendation_strategy3(self):
-        """Updated Turkish trading recommendation with new labeling system"""
         if self.data is None or len(self.data) < 60:
             return {
                 'action': 'BEKLE',
@@ -730,7 +693,6 @@ class Strategy3TradingBot:
         
     
     def plot_analysis_strategy3(self, save_path="strategy3_analysis.png"):
-        """Geliştirilmiş EMA ve WaveTrend sinyalleri ile analiz grafiği"""
         if self.data is None or len(self.data) < 60:
             print("⚠️ Grafik için yeterli veri yok")
             return
@@ -867,7 +829,6 @@ class Strategy3TradingBot:
         plt.show(block=True)
     
     def run_strategy3_analysis(self):
-        """Run complete Strategy 3 analysis with Turkish output"""
         print("🚀 Strateji 3 Analizi Başlatılıyor...")
         print("="*60)
         
@@ -916,7 +877,7 @@ class Strategy3TradingBot:
         print(f"📈 EMA: {recommendation['ema']}")
         print(f"🌊 WT1/WT2: {recommendation['wt1']}/{recommendation['wt2']}")
         print(f"🤖 LSTM Tahmin (Yüzde): {recommendation['lstm_prediction']}") 
-        # LSTM tahmini fiyatı formatını koruyarak göster
+
         if current_signal['predicted_price'] is not None:
             current_price_str = recommendation['current_price']
             currency_symbol = ''.join([c for c in current_price_str if not c.isdigit() and c not in [',', '.']])
@@ -944,7 +905,6 @@ class Strategy3TradingBot:
         }
 
 def get_trading_symbol():
-    """Get trading symbol from user with validation"""
     while True:
         symbol = input("🔍 Trading sembolünü girin (örn: BTCUSDT, ETHUSDT, XRPBTC): ").strip().upper()
         
@@ -967,7 +927,6 @@ def get_trading_symbol():
 
 def main():
     
-    """Main function to run Strategy 3 analysis"""
     print("🎯 Kripto Trading Bot - Strateji 3")
     print("="*50)
     
