@@ -52,7 +52,7 @@ The **Crypto Trading Strategy 3 Bot** is an AI-powered trading system that uses 
 
 ![Ekran görüntüsü4](https://github.com/user-attachments/assets/4dfb4c2e-7747-4230-8748-18a2f07a725f)
 
-### 📊 3. Technical Analysis View  
+### 📊 Technical Analysis View  
 ![Figure_1](https://github.com/user-attachments/assets/23735f1f-7d62-4183-ad35-d77bfae1558b)
 
 
