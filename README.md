@@ -41,7 +41,7 @@ The **Crypto Trading Strategy 3 Bot** is an AI-powered trading system that uses 
 
 5. Enter symbol (e.g. BTCUSDT) and review the analysis
 
-## 🖥️ Arayüz Önizlemesi
+## 🖥️ Preview 
 ### 🔍 Cryptocurrency Selection Panel
 ![Ekran görüntüsü](https://github.com/user-attachments/assets/82ad2ca1-9b2a-4b76-bb18-f5b1fd7170d1)
 
