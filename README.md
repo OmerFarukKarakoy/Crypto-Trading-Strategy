@@ -58,15 +58,17 @@ This structure ensures clarity and precision in trading decisions, allowing user
 ### 🔍 Cryptocurrency Selection Panel
 ![Ekran görüntüsü](https://github.com/user-attachments/assets/82ad2ca1-9b2a-4b76-bb18-f5b1fd7170d1)
 
-![Ekran görüntüsü2](https://github.com/user-attachments/assets/42fd6d27-eb5c-42e0-b1ac-0bb3eaf8eab7)
+![Ekran görüntüsü 2](https://github.com/user-attachments/assets/21fbdab3-d403-4fc3-87ae-20241dd152d7)
 
 ### 🤖 Strategy Analysis Results
-![Ekran görüntüsü3](https://github.com/user-attachments/assets/8e89f57e-a62b-4c74-977d-ff48ef888875)
+![Ekran görüntüsü 3](https://github.com/user-attachments/assets/b8d46f70-e666-4256-a4d9-8ac7afa02f9d)
 
-![Ekran görüntüsü4](https://github.com/user-attachments/assets/4dfb4c2e-7747-4230-8748-18a2f07a725f)
+![Ekran görüntüsü 4](https://github.com/user-attachments/assets/d7b18c2d-c4ec-4488-a366-d63a1e1db5b1)
+
 
 ### 📊 Technical Analysis View  
-![Figure_1](https://github.com/user-attachments/assets/23735f1f-7d62-4183-ad35-d77bfae1558b)
+![Figure_1](https://github.com/user-attachments/assets/b594ef83-9ca7-430d-950f-6d31ccb48abb)
+
 
 
 
