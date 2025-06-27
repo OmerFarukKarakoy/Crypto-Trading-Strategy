@@ -3,6 +3,17 @@
 ## Overview
 
 The **Crypto Trading Strategy 3 Bot** is an AI-powered trading system that uses **RSI**, **EMA**, and **WaveTrend** indicators to identify market trends and generate buy/sell signals. It also includes an **LSTM-based model** to forecast future prices and offers **Turkish-language recommendations** with visual analysis support.
+The bot provides recommendations based on a four-tier signal system:
+
+🟢 "Güçlü Al" → Strong Buy: All indicators (RSI, EMA, WaveTrend) confirm a bullish signal.
+
+🟦 "Temkinli Al" → Cautious Buy: Core indicators (EMA and WaveTrend) align positively, but RSI does not confirm.
+
+🟧 "Temkinli Sat" → Cautious Sell: Core indicators (EMA and WaveTrend) align negatively, but RSI does not confirm.
+
+🔴 "Güçlü Sat" → Strong Sell: All indicators (RSI, EMA, WaveTrend) confirm a bearish signal.
+
+This structure ensures clarity and precision in trading decisions, allowing users to quickly interpret the strength and direction of market signals in real time.
 
 
 
