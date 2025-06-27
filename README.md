@@ -9,6 +9,8 @@ The bot provides recommendations based on a four-tier signal system:
 
 🟦 "Temkinli Al" → Cautious Buy: Core indicators (EMA and WaveTrend) align positively, but RSI does not confirm.
 
+⚪ "Bekle" → Wait: EMA and WaveTrend give conflicting signals (e.g., one BUY, one SELL). RSI is ignored.
+
 🟧 "Temkinli Sat" → Cautious Sell: Core indicators (EMA and WaveTrend) align negatively, but RSI does not confirm.
 
 🔴 "Güçlü Sat" → Strong Sell: All indicators (RSI, EMA, WaveTrend) confirm a bearish signal.
