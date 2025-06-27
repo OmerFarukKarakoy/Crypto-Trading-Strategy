@@ -1,10 +1,3 @@
-"""
-Created on Tue Jun 10 19:57:18 2025
-
-@author: omerf
-
-"""
-
 import numpy as np
 import pandas as pd
 import yfinance as yf
