@@ -2,20 +2,7 @@
 Created on Tue Jun 10 19:57:18 2025
 
 @author: omerf
-"""
 
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jun  7 03:34:22 2025
-
-@author: omerf
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jun  4 19:16:08 2025
-
-@author: omerf
 """
 
 import numpy as np
@@ -202,8 +189,8 @@ class Strategy3TradingBot:
         import pandas as pd
 
         # Binance API anahtarları
-        API_KEY = 'cfDC92B191b9B3Ca3D842Ae0e01108CBKI6BqEW6xr4NrPus3hoZ9Ze9YrmWwPFV'
-        API_SECRET = 'f9AbA6a8AD6bC2a97294a212244dda04ETfl0kc4BSUGOtL7m7rNELpt3Jh25SiP'
+        API_KEY = '****************************************************************'
+        API_SECRET = '****************************************************************'
         client = Client(API_KEY, API_SECRET)
 
         try:
