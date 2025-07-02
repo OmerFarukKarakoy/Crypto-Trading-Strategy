@@ -35,7 +35,6 @@ This structure ensures clarity and precision in trading decisions, allowing user
 - **Matplotlib**: For detailed multi-panel financial visualization.
 - **TensorFlow / Keras**: For building and training the LSTM model.
 - **Binance API**: To fetch real-time and historical crypto data.
-- **yFinance** *(optional)*: Backup source for testing with sample data.
 
 ## Usage
 
