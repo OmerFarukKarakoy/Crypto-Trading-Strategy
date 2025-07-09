@@ -68,9 +68,14 @@ This structure ensures clarity and precision in trading decisions, allowing user
 ### 📊 Technical Analysis View  
 ![Figure_1](https://github.com/user-attachments/assets/b594ef83-9ca7-430d-950f-6d31ccb48abb)
 
+## ⚠️ Disclaimer
 
+🚨 **Educational Purposes Only**  
+• Not investment advice  
+• Contains theoretical strategies  
+• Use at your own risk  
 
-
+*"Crypto trading involves substantial risk of loss."*
 
 
 ## License
